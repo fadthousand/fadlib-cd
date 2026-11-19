@@ -11,8 +11,21 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                ivory: '#FAF7F2',
+                paper: '#FFFDF9',
+                navy: '#071739',
+                slate: '#4B6382',
+                mist: '#A4B5C4',
+                silver: '#CDD5DB',
+                sand: '#E3C39D',
+                bronze: '#A68868',
+                terracotta: '#A84A3C',
+            },
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Plus Jakarta Sans', ...defaultTheme.fontFamily.sans],
+                serif: ['Newsreader', ...defaultTheme.fontFamily.serif],
+                mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
             },
         },
     },
