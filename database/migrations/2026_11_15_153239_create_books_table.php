@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('volume_code', 30)->unique();
             $table->string('title');
             $table->string('author');
-            $table->unsignedSmallInteger('publication_year');
-            $table->enum('translation_condition', ['full', 'good', 'okay', 'bad', 'synopsis'])->default('full');
+            $table->unsignedSmallInteger('publication_year')->nullable();
             $table->text('synopsis')->nullable();
             $table->text('curator_note')->nullable();
             $table->string('epub_path')->nullable();
