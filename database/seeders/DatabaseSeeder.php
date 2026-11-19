@@ -219,20 +219,46 @@ class DatabaseSeeder extends Seeder
     }
 
     private function resolveSeedSourcePath(string $fileName): ?string
-    {
-        $candidates = [
-            storage_path("seed-sources/{$fileName}"),
-            storage_path("seed-sources/epubs/{$fileName}"),
-        ];
+        {
+            $candidateNames = array_unique([
+                $fileName,
+                str_replace('-01.epub', '-v01.epub', $fileName),
+                str_replace('-01.epub', '.epub', $fileName),
+            ]);
 
-        foreach ($candidates as $candidate) {
-            if (is_file($candidate)) {
-                return $candidate;
+            $directories = [
+                storage_path('seed-sources'),
+                storage_path('seed-sources/epubs'),
+            ];
+
+            foreach ($directories as $directory) {
+                if (! is_dir($directory)) {
+                    continue;
+                }
+
+                foreach ($candidateNames as $candidate) {
+                    $exactPath = $directory . DIRECTORY_SEPARATOR . $candidate;
+                    if (is_file($exactPath)) {
+                        return $exactPath;
+                    }
+                }
+
+                $entries = scandir($directory);
+                if ($entries !== false) {
+                    $lowercaseTargets = array_map('strtolower', $candidateNames);
+                    foreach ($entries as $entry) {
+                        if (in_array(strtolower($entry), $lowercaseTargets, true)) {
+                            $matchedPath = $directory . DIRECTORY_SEPARATOR . $entry;
+                            if (is_file($matchedPath)) {
+                                return $matchedPath;
+                            }
+                        }
+                    }
+                }
             }
-        }
 
-        return null;
-    }
+            return null;
+        }
 
     /**
      * @return array{year: int|null, synopsis: string|null}
