@@ -144,8 +144,8 @@ class BookController extends Controller
 
         $epubPath = $book->epub_path;
         if ($request->hasFile('epub_file')) {
-            if ($epubPath !== null && Storage::disk('local')->exists($epubPath)) {
-                Storage::disk('local')->delete($epubPath);
+            if ($epubPath !== null && Storage::disk(config('filesystems.epub_disk'))->exists($epubPath)) {
+                Storage::disk(config('filesystems.epub_disk'))->delete($epubPath);
             }
 
             /** @var UploadedFile $file */
@@ -177,8 +177,8 @@ class BookController extends Controller
             return back()->with('error', 'Cannot delete a volume that is referenced in circulation records.');
         }
 
-        if ($book->epub_path !== null && Storage::disk('local')->exists($book->epub_path)) {
-            Storage::disk('local')->delete($book->epub_path);
+        if ($book->epub_path !== null && Storage::disk(config('filesystems.epub_disk'))->exists($book->epub_path)) {
+            Storage::disk(config('filesystems.epub_disk'))->delete($book->epub_path);
         }
 
         $book->delete();
@@ -193,7 +193,7 @@ class BookController extends Controller
         $slugCode = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', trim($volumeCode)) ?? 'volume');
         $filename = trim($slugCode, '-').'.epub';
 
-        Storage::disk('local')->putFileAs('epubs', $file, $filename);
+        Storage::disk(config('filesystems.epub_disk'))->putFileAs('epubs', $file, $filename);
 
         return "epubs/{$filename}";
     }

@@ -33,7 +33,7 @@ class EpubDownloadController extends Controller
         }
 
         /** @var FilesystemAdapter $disk */
-        $disk = Storage::disk('local');
+        $disk = Storage::disk(config('filesystems.epub_disk'));
 
         if ($book->epub_path === null || ! $disk->exists($book->epub_path)) {
             abort(404, 'EPUB archive file not found on storage.');
