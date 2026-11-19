@@ -1,0 +1,23 @@
+kind: wasmer.io/App.v0
+name: flcd
+owner: fadthousand
+package: .
+env:
+  APP_NAME: "Fad Library"
+  APP_ENV: production
+  APP_DEBUG: "false"
+  APP_URL: "https://flcd-97121.wasmer.app"
+  LOG_CHANNEL: stderr
+  SESSION_DRIVER: cookie
+  CACHE_STORE: array
+  QUEUE_CONNECTION: sync
+  DB_CONNECTION: mysql
+  DB_HOST: gateway01.ap-southeast-1.prod.aws.tidbcloud.com
+  DB_PORT: "4000"
+  DB_DATABASE: fadlib_cd
+  DB_USERNAME: 3sGBHWEyyEkc1Ts.root
+  MYSQL_ATTR_SSL_CA: database/certs/tidb-ca.pem
+  EPUB_DISK: r2
+  R2_BUCKET: fadlib-epubs
+  R2_ENDPOINT: "https://bdf74ca35a42fa32146f18ac8f43cc69.r2.cloudflarestorage.com"
+app_id: da_RvJI4t0UAz6X
