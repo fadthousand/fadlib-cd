@@ -7,7 +7,7 @@
                 <p class="font-mono text-xs uppercase tracking-widest text-bronze">Literary Anthology</p>
                 <h1 class="font-serif text-3xl font-medium text-navy mt-1">The Collection</h1>
                 <p class="text-sm text-slate mt-1">
-                    Showing {{ number_format($totalVolumes) }} {{ Str::plural('volume',$totalVolumes) }} across {{ number_format($seriesList->count()) }} {{ Str::plural('series',$seriesList->count()) }}.
+                    Showing {{ number_format($totalVolumes) }} {{ Str::plural('volume', $totalVolumes) }} across {{ number_format($seriesList->count()) }} {{ Str::plural('series', $seriesList->count()) }}.
                 </p>
             </div>
 
@@ -47,8 +47,8 @@
                     class="w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy"
                 >
                     <option value="">All Cataloged Series</option>
-                    @foreach ($allCategories as$cat)
-                        <option value="{{ $cat->id }}" @selected($selectedCategoryId ===$cat->id)>
+                    @foreach ($allCategories as $cat)
+                        <option value="{{ $cat->id }}" @selected($selectedCategoryId === $cat->id)>
                             {{ $cat->name }}
                         </option>
                     @endforeach
@@ -59,7 +59,7 @@
                 <button type="submit" class="w-full inline-flex justify-center items-center px-4 py-2 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
                     Filter
                 </button>
-                @if ($search !== '' \vert{}\vert{}$selectedCategoryId > 0)
+                @if ($search !== '' || $selectedCategoryId > 0)
                     <a href="{{ route('books.index') }}" class="inline-flex justify-center items-center px-3 py-2 bg-ivory border border-silver text-xs font-medium text-slate hover:text-navy rounded-md transition">
                         Reset
                     </a>
@@ -80,7 +80,7 @@
         </div>
     @else
         <div class="space-y-10">
-            @foreach ($seriesList as$series)
+            @foreach ($seriesList as $series)
                 <section class="bg-paper border border-silver rounded-lg overflow-hidden">
                     <div class="px-6 py-5 border-b border-silver bg-ivory/50 flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
                         <div>
@@ -103,12 +103,12 @@
                         </div>
 
                         <div class="shrink-0 font-mono text-xs text-bronze uppercase tracking-wider">
-                            {{ $series->books->count() }} {{ Str::plural('Volume',$series->books->count()) }}
+                            {{ $series->books->count() }} {{ Str::plural('Volume', $series->books->count()) }}
                         </div>
                     </div>
 
                     <div class="divide-y divide-silver">
-                        @foreach ($series->books as$book)
+                        @foreach ($series->books as $book)
                             <div class="px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 hover:bg-ivory/50 transition">
                                 <div class="min-w-0 flex-1">
                                     <div class="flex flex-wrap items-center gap-2.5">
@@ -136,7 +136,7 @@
                                     <div class="text-right">
                                         @if ($book->stock > 0)
                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded font-mono text-xs bg-sand/25 border border-bronze/40 text-navy">
-                                                {{ $book->stock }} / {{$book->total_copies }} available
+                                                {{ $book->stock }} / {{ $book->total_copies }} available
                                             </span>
                                         @else
                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded font-mono text-xs bg-terracotta/10 border border-terracotta/40 text-terracotta">

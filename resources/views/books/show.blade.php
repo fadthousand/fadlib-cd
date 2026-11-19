@@ -99,7 +99,7 @@
                 <div class="mt-6 pt-5 border-t border-silver space-y-3">
                     @if ($user?->isStaffOrAdmin())
                         @if ($book->epub_path)
-                            <a href="{{ route('books.download', $book) }}" class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
+                            <a href="{{ route('books.download', $book) }}" data-turbo="false" class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
                                 Download Official EPUB
                             </a>
                         @else
@@ -121,7 +121,7 @@
                             </div>
 
                             @if ($book->epub_path)
-                                <a href="{{ route('books.download', $book) }}" class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
+                                <a href="{{ route('books.download', $book) }}" data-turbo="false" class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
                                     Download Official EPUB
                                 </a>
                             @endif

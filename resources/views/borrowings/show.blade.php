@@ -113,7 +113,7 @@
                                 Qty: {{ $detail->quantity }}
                             </span>
                             @if ($detail->book->epub_path)
-                                <a href="{{ route('books.download', $detail->book) }}" class="text-xs font-medium text-navy hover:text-bronze underline">
+                                <a href="{{ route('books.download', $detail->book) }}" data-turbo="false" class="text-xs font-medium text-navy hover:text-bronze underline">
                                     Download EPUB
                                 </a>
                             @endif

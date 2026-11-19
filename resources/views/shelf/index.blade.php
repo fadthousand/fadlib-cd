@@ -79,7 +79,7 @@
                                             </div>
 
                                             @if ($detail->book->epub_path)
-                                                <a href="{{ route('books.download', $detail->book) }}" class="inline-flex justify-center items-center px-4 py-2 bg-navy text-paper text-xs font-medium rounded-md hover:bg-slate transition shrink-0">
+                                                <a href="{{ route('books.download', $detail->book) }}" data-turbo="false" class="inline-flex justify-center items-center px-4 py-2 bg-navy text-paper text-xs font-medium rounded-md hover:bg-slate transition shrink-0">
                                                     Download EPUB
                                                 </a>
                                             @endif
