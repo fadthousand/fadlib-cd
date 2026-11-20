@@ -4,11 +4,11 @@
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Reader Directory</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Edit Member Profile</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Member Management</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Edit Member</h1>
             </div>
             <a href="{{ route('members.show', $member) }}" class="text-sm text-slate hover:text-navy underline">
-                &larr; Back to Dossier
+                &larr; Back to Details
             </a>
         </div>
     </x-slot>

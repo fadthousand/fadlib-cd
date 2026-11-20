@@ -1,15 +1,15 @@
 <x-app-layout>
-    <x-slot name="title">Circulation Ledger</x-slot>
+    <x-slot name="title">Borrowings</x-slot>
 
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Archive Circulation</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Borrowing Ledger</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Circulation</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Borrowing Records</h1>
             </div>
 
             <a href="{{ route('borrowings.create') }}" class="inline-flex items-center px-4 py-2 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                + Record New Loan
+                + Record Borrowing
             </a>
         </div>
     </x-slot>
@@ -32,7 +32,7 @@
 
             <div class="md:col-span-4">
                 <label for="status" class="block font-mono text-[11px] uppercase tracking-wider text-slate mb-1.5">
-                    Circulation Status
+                    Status
                 </label>
                 <select id="status" name="status" class="w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy">
                     <option value="">All Records</option>
@@ -57,7 +57,7 @@
     <div class="bg-paper border border-silver rounded-lg overflow-hidden">
         @if ($borrowings->isEmpty())
             <div class="px-6 py-12 text-center">
-                <p class="font-serif text-lg text-navy">No circulation records match your filter.</p>
+                <p class="font-serif text-lg text-navy">No borrowing records match your filter.</p>
             </div>
         @else
             <div class="overflow-x-auto">
@@ -66,8 +66,8 @@
                         <tr>
                             <th class="px-6 py-3 text-left font-mono text-xs uppercase tracking-wider text-slate">Transaction</th>
                             <th class="px-6 py-3 text-left font-mono text-xs uppercase tracking-wider text-slate">Member</th>
-                            <th class="px-6 py-3 text-left font-mono text-xs uppercase tracking-wider text-slate">Items</th>
-                            <th class="px-6 py-3 text-left font-mono text-xs uppercase tracking-wider text-slate">Loan Window</th>
+                            <th class="px-6 py-3 text-left font-mono text-xs uppercase tracking-wider text-slate">Books</th>
+                            <th class="px-6 py-3 text-left font-mono text-xs uppercase tracking-wider text-slate">Borrow Period</th>
                             <th class="px-6 py-3 text-left font-mono text-xs uppercase tracking-wider text-slate">Status</th>
                             <th class="px-6 py-3 text-right font-mono text-xs uppercase tracking-wider text-slate">Action</th>
                         </tr>

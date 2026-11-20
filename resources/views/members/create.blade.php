@@ -1,11 +1,11 @@
 <x-app-layout>
-    <x-slot name="title">Register Member</x-slot>
+    <x-slot name="title">Add Member</x-slot>
 
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Reader Directory</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Register New Member</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Member Management</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Add New Member</h1>
             </div>
             <a href="{{ route('members.index') }}" class="text-sm text-slate hover:text-navy underline">
                 &larr; Back to Members

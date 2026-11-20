@@ -1,11 +1,11 @@
 <x-app-layout>
-    <x-slot name="title">Add Volume</x-slot>
+    <x-slot name="title">Add Book</x-slot>
 
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Archive Cataloging</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Add New Volume</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Book Management</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Add New Book</h1>
             </div>
             <a href="{{ route('books.index') }}" class="text-sm text-slate hover:text-navy underline">
                 &larr; Back to Collection
@@ -60,16 +60,16 @@
                 </div>
 
                 <div>
-                    <x-input-label for="total_copies" value="Total Archive Copies" />
+                    <x-input-label for="total_copies" value="Total Copies" />
                     <x-text-input id="total_copies" name="total_copies" type="number" min="1" max="999" class="mt-1.5 block w-full font-mono" :value="old('total_copies', 5)" required />
                     <x-input-error :messages="$errors->get('total_copies')" class="mt-1.5" />
                 </div>
             </div>
 
             <div>
-                <x-input-label for="epub_file" value="Official EPUB File (Optional, Max 100 MB)" />
+                <x-input-label for="epub_file" value="EPUB File (Optional, Max 100 MB)" />
                 <input id="epub_file" name="epub_file" type="file" accept=".epub,application/epub+zip" class="mt-1.5 block w-full text-sm text-slate file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-silver file:text-xs file:font-medium file:bg-ivory file:text-navy hover:file:bg-sand/20" />
-                <p class="text-xs text-slate mt-1">Stored privately and normalized automatically to match the volume code.</p>
+                <p class="text-xs text-slate mt-1">Stored privately and renamed automatically to match the volume code.</p>
                 <x-input-error :messages="$errors->get('epub_file')" class="mt-1.5" />
             </div>
 
@@ -80,7 +80,7 @@
             </div>
 
             <div>
-                <x-input-label for="curator_note" value="Curator Note (Optional)" />
+                <x-input-label for="curator_note" value="Notes (Optional)" />
                 <textarea id="curator_note" name="curator_note" rows="2" class="mt-1.5 block w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy">{{ old('curator_note') }}</textarea>
                 <x-input-error :messages="$errors->get('curator_note')" class="mt-1.5" />
             </div>
@@ -90,7 +90,7 @@
                     Cancel
                 </a>
                 <x-primary-button>
-                    Save Volume to Archive
+                    Save Book
                 </x-primary-button>
             </div>
         </form>

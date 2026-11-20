@@ -4,11 +4,11 @@
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Archive Cataloging</p>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Book Management</p>
                 <h1 class="font-serif text-3xl font-medium text-navy mt-1">Edit {{ $book->volume_code }}</h1>
             </div>
             <a href="{{ route('books.show', $book) }}" class="text-sm text-slate hover:text-navy underline">
-                &larr; Back to Dossier
+                &larr; Back to Details
             </a>
         </div>
     </x-slot>
@@ -88,7 +88,7 @@
             </div>
 
             <div>
-                <x-input-label for="curator_note" value="Curator Note (Optional)" />
+                <x-input-label for="curator_note" value="Notes (Optional)" />
                 <textarea id="curator_note" name="curator_note" rows="2" class="mt-1.5 block w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy">{{ old('curator_note', $book->curator_note) }}</textarea>
                 <x-input-error :messages="$errors->get('curator_note')" class="mt-1.5" />
             </div>
@@ -98,7 +98,7 @@
                     Cancel
                 </a>
                 <x-primary-button>
-                    Update Volume
+                    Update Book
                 </x-primary-button>
             </div>
         </form>

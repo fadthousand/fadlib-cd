@@ -1,6 +1,6 @@
 [package]
 name = "fadthousand/fadlib-cd"
-version = "0.1.3"
+version = "0.1.4"
 description = "Fad Library — Personal EPUB Archive and Circulation System"
 
 [dependencies]

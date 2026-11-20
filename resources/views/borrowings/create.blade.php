@@ -11,16 +11,16 @@
 @endphp
 
 <x-app-layout>
-    <x-slot name="title">Record New Loan</x-slot>
+    <x-slot name="title">Record Borrowing</x-slot>
 
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Archive Circulation</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Record Multi-Volume Loan</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Circulation</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Record Borrowing</h1>
             </div>
             <a href="{{ route('borrowings.index') }}" class="text-sm text-slate hover:text-navy underline">
-                &larr; Back to Ledger
+                &larr; Back to Borrowings
             </a>
         </div>
     </x-slot>
@@ -58,7 +58,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div class="sm:col-span-2">
-                    <x-input-label for="member_id" value="Borrowing Member" />
+                    <x-input-label for="member_id" value="Member" />
                     <select id="member_id" name="member_id" required class="mt-1.5 block w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy">
                         <option value="">Select an active member...</option>
                         @foreach ($members as $member)
@@ -90,12 +90,12 @@
             <div class="pt-4 border-t border-silver">
                 <div class="flex items-center justify-between gap-4 mb-3">
                     <div>
-                        <p class="font-mono text-xs uppercase tracking-wider text-slate">Volumes to Issue</p>
-                        <p class="text-xs text-slate">Each volume must be unique within the same transaction.</p>
+                        <p class="font-mono text-xs uppercase tracking-wider text-slate">Books to Borrow</p>
+                        <p class="text-xs text-slate">Each book can only be selected once per transaction.</p>
                     </div>
 
                     <button type="button" @click="addRow()" class="inline-flex items-center px-3 py-1.5 bg-ivory border border-silver rounded text-xs font-medium text-navy hover:bg-sand/20 transition">
-                        + Add Volume Row
+                        + Add Book
                     </button>
                 </div>
 
@@ -106,7 +106,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-start bg-ivory/60 border border-silver rounded-md p-3">
                             <div class="sm:col-span-8">
                                 <label :for="'book_' + index" class="block font-mono text-[10px] uppercase tracking-wider text-slate mb-1">
-                                    Volume Selection
+                                    Select Book
                                 </label>
                                 <select
                                     :id="'book_' + index"
@@ -115,7 +115,7 @@
                                     required
                                     class="block w-full rounded-md border-silver bg-paper text-sm text-navy focus:border-navy focus:ring-navy"
                                 >
-                                    <option value="">Select available volume...</option>
+                                    <option value="">Select an available book...</option>
                                     <template x-for="book in books" :key="book.id">
                                         <option :value="book.id" x-text="book.label" :selected="String(book.id) === String(item.book_id)"></option>
                                     </template>
@@ -165,8 +165,8 @@
             </div>
 
             <div>
-                <x-input-label for="notes" value="Desk Notes (Optional)" />
-                <textarea id="notes" name="notes" rows="2" class="mt-1.5 block w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy" placeholder="Optional circulation remarks...">{{ old('notes') }}</textarea>
+                <x-input-label for="notes" value="Notes (Optional)" />
+                <textarea id="notes" name="notes" rows="2" class="mt-1.5 block w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy" placeholder="Optional notes...">{{ old('notes') }}</textarea>
                 <x-input-error :messages="$errors->get('notes')" class="mt-1.5" />
             </div>
 
@@ -175,7 +175,7 @@
                     Cancel
                 </a>
                 <x-primary-button>
-                    Confirm &amp; Issue Loan
+                    Save Borrowing
                 </x-primary-button>
             </div>
         </form>

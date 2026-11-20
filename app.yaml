@@ -6,7 +6,7 @@ env:
   APP_NAME: "Fad Library"
   APP_ENV: production
   APP_DEBUG: "false"
-  APP_URL: "https://flcd-97121.wasmer.app"
+  APP_URL: "https://fadlib-cd.wasmer.app"
   LOG_CHANNEL: stderr
   SESSION_DRIVER: cookie
   CACHE_STORE: array

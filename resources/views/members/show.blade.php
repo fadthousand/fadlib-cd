@@ -17,7 +17,7 @@
                     Edit Profile
                 </a>
                 <a href="{{ route('borrowings.create') }}" class="inline-flex items-center px-4 py-2 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                    + Record Loan
+                    + Record Borrowing
                 </a>
             </div>
         </div>
@@ -62,7 +62,7 @@
         <section class="lg:col-span-2 bg-paper border border-silver rounded-lg overflow-hidden">
             <div class="px-6 py-4 border-b border-silver flex items-center justify-between">
                 <div>
-                    <h2 class="font-serif text-xl font-medium text-navy">Circulation History</h2>
+                    <h2 class="font-serif text-xl font-medium text-navy">Borrowing History</h2>
                     <p class="text-xs text-slate">{{ $borrowings->count() }} {{ Str::plural('transaction', $borrowings->count()) }} on record</p>
                 </div>
             </div>

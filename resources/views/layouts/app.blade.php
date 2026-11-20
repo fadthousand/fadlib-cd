@@ -41,10 +41,14 @@
             {{ $slot }}
         </main>
 
-        <footer class="border-t border-silver bg-paper/60 mt-12">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate">
-                <p class="font-serif italic text-sm text-navy">Fad Library — Curated Light Novel Anthology &amp; Circulation Ledger</p>
-                <p class="font-mono">Verified Official EPUB Archive</p>
+        <footer class="border-t border-silver bg-paper/70 py-6 text-xs text-slate">
+            <div class="mx-auto flex max-w-6xl flex-col items-center justify-center gap-3 px-4 text-center sm:flex-row sm:justify-between sm:px-6 sm:text-left lg:px-8">
+                <p class="font-serif italic text-navy">
+                    Fad Library — Personal Digital Library &amp; Circulation System
+                </p>
+                <p class="font-mono text-[11px] uppercase tracking-wider text-slate">
+                    Verified EPUB Archive
+                </p>
             </div>
         </footer>
     </body>

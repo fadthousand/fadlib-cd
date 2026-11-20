@@ -4,8 +4,8 @@
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Literary Anthology</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">The Collection</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Book Catalog</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Book Collection</h1>
                 <p class="text-sm text-slate mt-1">
                     Showing {{ number_format($totalVolumes) }} {{ Str::plural('volume', $totalVolumes) }} across {{ number_format($seriesList->count()) }} {{ Str::plural('series', $seriesList->count()) }}.
                 </p>
@@ -14,7 +14,7 @@
             @if (Auth::user()?->isStaffOrAdmin())
                 <div class="flex items-center gap-2.5">
                     <a href="{{ route('books.create') }}" class="inline-flex items-center px-4 py-2 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                        + Add Volume
+                        + Add Book
                     </a>
                 </div>
             @endif
@@ -25,14 +25,14 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
             <div class="md:col-span-6">
                 <label for="search" class="block font-mono text-[11px] uppercase tracking-wider text-slate mb-1.5">
-                    Search Title, Volume Code, or Author
+                    Search Volume Code or Author
                 </label>
                 <input
                     id="search"
                     type="text"
                     name="search"
                     value="{{ $search }}"
-                    placeholder="e.g. COTE-Y1V01, Silent Witch, Makoto Shinkai..."
+                    placeholder="e.g. COTE, SSW, Makoto Shinkai..."
                     class="w-full rounded-md border-silver bg-ivory/70 text-sm text-navy placeholder-mist focus:border-navy focus:bg-paper focus:ring-navy"
                 >
             </div>
@@ -46,7 +46,7 @@
                     name="category"
                     class="w-full rounded-md border-silver bg-ivory/70 text-sm text-navy focus:border-navy focus:bg-paper focus:ring-navy"
                 >
-                    <option value="">All Cataloged Series</option>
+                    <option value="">All Series</option>
                     @foreach ($allCategories as $cat)
                         <option value="{{ $cat->id }}" @selected($selectedCategoryId === $cat->id)>
                             {{ $cat->name }}
@@ -146,7 +146,7 @@
                                     </div>
 
                                     <a href="{{ route('books.show', $book) }}" class="inline-flex items-center px-3 py-1.5 bg-ivory border border-silver rounded text-xs font-medium text-navy hover:bg-navy hover:text-paper hover:border-navy transition">
-                                        Open Dossier
+                                        Details
                                     </a>
                                 </div>
                             </div>

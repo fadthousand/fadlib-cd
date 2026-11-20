@@ -9,15 +9,15 @@
                     <span>/</span>
                     <span>{{ $borrowing->transaction_code }}</span>
                 </div>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Transaction Dossier</h1>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Borrowing Details</h1>
             </div>
 
             @if ($borrowing->status === 'borrowed')
-                <form method="POST" action="{{ route('borrowings.return', $borrowing) }}" onsubmit="return confirm('Mark all volumes in this transaction as returned and restore stock?');">
+                <form method="POST" action="{{ route('borrowings.return', $borrowing) }}" onsubmit="return confirm('Mark all books in this transaction as returned and restore stock?');">
                     @csrf
                     @method('PATCH')
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                        Mark All Returned &amp; Restore Stock
+                        Mark as Returned &amp; Restore Stock
                     </button>
                 </form>
             @endif
@@ -26,7 +26,7 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <aside class="bg-paper border border-silver rounded-lg p-6 h-fit">
-            <p class="font-mono text-xs uppercase tracking-widest text-bronze">Ledger Metadata</p>
+            <p class="font-mono text-xs uppercase tracking-widest text-bronze">Transaction Info</p>
 
             <dl class="mt-4 divide-y divide-silver text-sm">
                 <div class="py-3 flex justify-between gap-4">
@@ -84,7 +84,7 @@
         <section class="lg:col-span-2 bg-paper border border-silver rounded-lg overflow-hidden">
             <div class="px-6 py-4 border-b border-silver flex items-center justify-between">
                 <div>
-                    <h2 class="font-serif text-xl font-medium text-navy">Borrowed Volumes</h2>
+                    <h2 class="font-serif text-xl font-medium text-navy">Borrowed Books</h2>
                     <p class="text-xs text-slate">
                         {{ $borrowing->details->sum('quantity') }} total {{ Str::plural('copy', $borrowing->details->sum('quantity')) }} across {{ $borrowing->details->count() }} {{ Str::plural('title', $borrowing->details->count()) }}
                     </p>

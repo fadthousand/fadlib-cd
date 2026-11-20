@@ -4,7 +4,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Archive Taxonomy</p>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Categories</p>
                 <h1 class="font-serif text-3xl font-medium text-navy mt-1">Edit Series</h1>
             </div>
             <a href="{{ route('categories.index') }}" class="text-sm text-slate hover:text-navy underline">

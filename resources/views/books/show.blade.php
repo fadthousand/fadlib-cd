@@ -26,10 +26,10 @@
             @if ($user?->isStaffOrAdmin())
                 <div class="flex flex-wrap items-center gap-2.5">
                     <a href="{{ route('books.edit', $book) }}" class="inline-flex items-center px-4 py-2 bg-ivory border border-silver text-navy text-sm font-medium rounded-md hover:bg-sand/20 transition">
-                        Edit Volume
+                        Edit Book
                     </a>
 
-                    <form method="POST" action="{{ route('books.destroy', $book) }}" onsubmit="return confirm('Remove this volume permanently from the archive?');">
+                    <form method="POST" action="{{ route('books.destroy', $book) }}" onsubmit="return confirm('Delete this book permanently?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="inline-flex items-center px-4 py-2 bg-terracotta/10 border border-terracotta/40 text-terracotta text-sm font-medium rounded-md hover:bg-terracotta hover:text-paper transition">
@@ -44,7 +44,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 space-y-6">
             <article class="bg-paper border border-silver rounded-lg p-6 sm:p-8">
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Publisher Synopsis</p>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Synopsis</p>
 
                 @if ($book->synopsis)
                     <div class="font-serif text-base text-navy leading-relaxed mt-4 space-y-4">
@@ -52,13 +52,13 @@
                     </div>
                 @else
                     <p class="text-sm italic text-slate mt-4">
-                        No synopsis metadata is recorded for this edition.
+                        No synopsis available for this book.
                     </p>
                 @endif
 
                 @if ($book->curator_note)
                     <div class="mt-8 pt-6 border-t border-silver">
-                        <p class="font-mono text-xs uppercase tracking-widest text-slate">Curator Note</p>
+                        <p class="font-mono text-xs uppercase tracking-widest text-slate">Notes</p>
                         <p class="text-sm text-navy mt-2 leading-relaxed bg-ivory border border-silver rounded-md p-4">
                             {{ $book->curator_note }}
                         </p>
@@ -69,7 +69,7 @@
 
         <aside class="space-y-6">
             <div class="bg-paper border border-silver rounded-lg p-6">
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Bibliographic Record</p>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Book Information</p>
 
                 <dl class="mt-4 divide-y divide-silver text-sm">
                     <div class="py-3 flex justify-between gap-4">
@@ -85,11 +85,11 @@
                         <dd class="font-mono text-navy">{{ $book->publication_year ?? 'Unlisted' }}</dd>
                     </div>
                     <div class="py-3 flex justify-between gap-4">
-                        <dt class="text-slate">Edition</dt>
-                        <dd class="font-mono text-xs text-navy">Official English EPUB</dd>
+                        <dt class="text-slate">Format</dt>
+                        <dd class="font-mono text-xs text-navy">EPUB Digital Edition</dd>
                     </div>
                     <div class="py-3 flex justify-between gap-4">
-                        <dt class="text-slate">Archive Stock</dt>
+                        <dt class="text-slate">Available Stock</dt>
                         <dd class="font-mono font-medium {{ $book->stock > 0 ? 'text-navy' : 'text-terracotta' }}">
                             {{ $book->stock }} / {{ $book->total_copies }} copies
                         </dd>
@@ -100,7 +100,7 @@
                     @if ($user?->isStaffOrAdmin())
                         @if ($book->epub_path)
                             <a href="{{ route('books.download', $book) }}" data-turbo="false" class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                                Download Official EPUB
+                                Download EPUB
                             </a>
                         @else
                             <p class="text-xs text-center font-mono text-slate py-2 bg-ivory border border-silver rounded">
@@ -109,7 +109,7 @@
                         @endif
 
                         <a href="{{ route('borrowings.create') }}" class="w-full inline-flex justify-center items-center px-4 py-2 bg-ivory border border-silver text-navy text-sm font-medium rounded-md hover:bg-sand/20 transition">
-                            Issue Loan to Member
+                            Record Borrowing
                         </a>
                     @elseif ($user?->isMember())
                         @if ($activeMemberBorrowing)
@@ -122,7 +122,7 @@
 
                             @if ($book->epub_path)
                                 <a href="{{ route('books.download', $book) }}" data-turbo="false" class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                                    Download Official EPUB
+                                    Download EPUB
                                 </a>
                             @endif
 
@@ -133,7 +133,7 @@
                             <form method="POST" action="{{ route('books.checkout', $book) }}">
                                 @csrf
                                 <button type="submit" class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                                    Borrow Volume (7 Days)
+                                    Borrow Book (7 Days)
                                 </button>
                             </form>
                             <p class="text-[11px] text-slate text-center">

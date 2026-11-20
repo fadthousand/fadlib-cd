@@ -1,11 +1,11 @@
 <x-app-layout>
-    <x-slot name="title">Series Directory</x-slot>
+    <x-slot name="title">Series</x-slot>
 
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Archive Taxonomy</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Cataloged Series</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Categories</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Book Series</h1>
             </div>
 
             @if (Auth::user()?->isAdmin())

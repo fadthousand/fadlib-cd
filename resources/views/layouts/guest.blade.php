@@ -17,7 +17,7 @@
             <div class="text-center mb-8">
                 <a href="{{ route('login') }}" class="inline-flex flex-col items-center">
                     <span class="font-mono text-[11px] uppercase tracking-[0.22em] text-bronze mb-2">
-                        Literary Anthology &amp; Ledger
+                        Digital Library System
                     </span>
                     <span class="font-serif text-3xl font-semibold tracking-tight text-navy">
                         Fad Library
@@ -30,7 +30,7 @@
             </div>
 
             <p class="text-center text-xs text-slate mt-6 font-mono">
-                Official EPUB Digital Archive System
+                Library Catalog &amp; Circulation Management
             </p>
         </div>
     </body>

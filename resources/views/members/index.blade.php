@@ -4,12 +4,12 @@
     <x-slot name="header">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Reader Directory</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Registered Members</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Member Management</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Members</h1>
             </div>
 
             <a href="{{ route('members.create') }}" class="inline-flex items-center px-4 py-2 bg-navy text-paper text-sm font-medium rounded-md hover:bg-slate transition">
-                + Register Member
+                + Add Member
             </a>
         </div>
     </x-slot>
@@ -90,7 +90,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-right">
                                     <div class="inline-flex items-center gap-3">
                                         <a href="{{ route('members.show', $member) }}" class="text-xs font-medium text-navy hover:text-bronze underline">
-                                            Dossier
+                                            Details
                                         </a>
                                         <a href="{{ route('members.edit', $member) }}" class="text-xs font-medium text-slate hover:text-navy underline">
                                             Edit

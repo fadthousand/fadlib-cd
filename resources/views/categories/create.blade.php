@@ -4,8 +4,8 @@
     <x-slot name="header">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Archive Taxonomy</p>
-                <h1 class="font-serif text-3xl font-medium text-navy mt-1">Create New Series</h1>
+                <p class="font-mono text-xs uppercase tracking-widest text-bronze">Categories</p>
+                <h1 class="font-serif text-3xl font-medium text-navy mt-1">New Series</h1>
             </div>
             <a href="{{ route('categories.index') }}" class="text-sm text-slate hover:text-navy underline">
                 &larr; Back to Series
@@ -31,7 +31,7 @@
 
             <div>
                 <x-input-label for="epigraph" value="Epigraph (Optional)" />
-                <x-text-input id="epigraph" name="epigraph" type="text" class="mt-1.5 block w-full font-serif italic" :value="old('epigraph')" placeholder="A brief thematic quote displayed beneath the series title..." />
+                <x-text-input id="epigraph" name="epigraph" type="text" class="mt-1.5 block w-full font-serif italic" :value="old('epigraph')" placeholder="Optional quote displayed under the series title..." />
                 <x-input-error :messages="$errors->get('epigraph')" class="mt-1.5" />
             </div>
 
