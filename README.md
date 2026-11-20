@@ -16,19 +16,15 @@ This project was developed individually in accordance with the course final proj
 
 | Name | Student ID (NPM) | Study Program |
 | :--- | :--- | :--- |
-| Abdurrahman Fadly | `[Your NPM]` | Information Systems — Universitas Singaperbangsa Karawang |
+| Abdurrahman Fadly | `2410631250001` | Information Systems — Universitas Singaperbangsa Karawang |
 
 ---
 
 ## Demo Access
 
-To protect catalog integrity and file storage in the production environment, credentials for **Admin** and **Staff (Librarian)** accounts are omitted from this public repository and will be demonstrated live during the project defense.
+To protect catalog integrity and private EPUB storage on the live server, production credentials for **Admin**, **Staff (Librarian)**, and **Member** accounts are omitted from this public repository and are provided privately to the course evaluator in the final report.
 
-Visitors and evaluators can sign in at `/login` using the **Member** account below to browse the catalog, borrow books, and download EPUB files:
-
-| Role | Email | Password | Access Scope |
-| :--- | :--- | :--- | :--- |
-| **Member** | `member@flcd.io` | `member123` | Browse books and series, borrow available volumes (7-day loan window), and download EPUB files from `My Shelf` |
+To test all roles locally, run `php artisan migrate --seed` after setting up your local environment, then sign in with the local seeder accounts configured in `database/seeders/DatabaseSeeder.php`.
 
 ---
 

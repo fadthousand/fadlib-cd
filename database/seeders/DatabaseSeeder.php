@@ -16,25 +16,29 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        $adminEmail = (string) env('SEED_ADMIN_EMAIL', 'admin@flcd.io');
+        $staffEmail = (string) env('SEED_STAFF_EMAIL', 'staff@flcd.io');
+        $memberEmail = (string) env('SEED_MEMBER_EMAIL', 'member@flcd.io');
+
         User::query()->create([
             'name' => 'Developer',
-            'email' => 'admin@flcd.io',
-            'password' => Hash::make('admin123'),
+            'email' => $adminEmail,
+            'password' => Hash::make((string) env('SEED_ADMIN_PASSWORD', 'admin123')),
             'role' => 'admin',
         ]);
 
         User::query()->create([
             'name' => 'Librarian',
-            'email' => 'staff@flcd.io',
-            'password' => Hash::make('staff123'),
+            'email' => $staffEmail,
+            'password' => Hash::make((string) env('SEED_STAFF_PASSWORD', 'staff123')),
             'role' => 'staff',
         ]);
 
         /** @var User $memberUser */
         $memberUser = User::query()->create([
             'name' => 'Reader',
-            'email' => 'member@flcd.io',
-            'password' => Hash::make('member123'),
+            'email' => $memberEmail,
+            'password' => Hash::make((string) env('SEED_MEMBER_PASSWORD', 'member123')),
             'role' => 'member',
         ]);
 
@@ -42,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => $memberUser->id,
             'member_code' => 'MEM-2026-1',
             'full_name' => 'Reader',
-            'email' => 'member@flcd.io',
+            'email' => $memberEmail,
             'phone' => null,
             'address' => null,
             'status' => 'active',
@@ -219,46 +223,46 @@ class DatabaseSeeder extends Seeder
     }
 
     private function resolveSeedSourcePath(string $fileName): ?string
-        {
-            $candidateNames = array_unique([
-                $fileName,
-                str_replace('-01.epub', '-v01.epub', $fileName),
-                str_replace('-01.epub', '.epub', $fileName),
-            ]);
+    {
+        $candidateNames = array_unique([
+            $fileName,
+            str_replace('-01.epub', '-v01.epub', $fileName),
+            str_replace('-01.epub', '.epub', $fileName),
+        ]);
 
-            $directories = [
-                storage_path('seed-sources'),
-                storage_path('seed-sources/epubs'),
-            ];
+        $directories = [
+            storage_path('seed-sources'),
+            storage_path('seed-sources/epubs'),
+        ];
 
-            foreach ($directories as $directory) {
-                if (! is_dir($directory)) {
-                    continue;
+        foreach ($directories as $directory) {
+            if (! is_dir($directory)) {
+                continue;
+            }
+
+            foreach ($candidateNames as $candidate) {
+                $exactPath = $directory . DIRECTORY_SEPARATOR . $candidate;
+                if (is_file($exactPath)) {
+                    return $exactPath;
                 }
+            }
 
-                foreach ($candidateNames as $candidate) {
-                    $exactPath = $directory . DIRECTORY_SEPARATOR . $candidate;
-                    if (is_file($exactPath)) {
-                        return $exactPath;
-                    }
-                }
-
-                $entries = scandir($directory);
-                if ($entries !== false) {
-                    $lowercaseTargets = array_map('strtolower', $candidateNames);
-                    foreach ($entries as $entry) {
-                        if (in_array(strtolower($entry), $lowercaseTargets, true)) {
-                            $matchedPath = $directory . DIRECTORY_SEPARATOR . $entry;
-                            if (is_file($matchedPath)) {
-                                return $matchedPath;
-                            }
+            $entries = scandir($directory);
+            if ($entries !== false) {
+                $lowercaseTargets = array_map('strtolower', $candidateNames);
+                foreach ($entries as $entry) {
+                    if (in_array(strtolower($entry), $lowercaseTargets, true)) {
+                        $matchedPath = $directory . DIRECTORY_SEPARATOR . $entry;
+                        if (is_file($matchedPath)) {
+                            return $matchedPath;
                         }
                     }
                 }
             }
-
-            return null;
         }
+
+        return null;
+    }
 
     /**
      * @return array{year: int|null, synopsis: string|null}
