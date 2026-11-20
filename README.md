@@ -1,58 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Fad Library
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Fad Library** is a web-based library information system and digital archive built with **Laravel** for managing official `.epub` light novel collections.
 
-## About Laravel
+Academically, this project fulfills the Final Project (UAS) requirements for the **Web Framework Programming** (*Pemrograman Web Framework*) course in the Information Systems Study Program, Universitas Singaperbangsa Karawang.
+Practically, it serves as a private, structured digital archive—drawing inspiration from curated community archives like U2, but designed with a friendlier access model that avoids rigid IP bans in favor of clear role-based access control and straightforward borrowing circulation.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Live Application:** [https://fadlib-cd.wasmer.app](https://fadlib-cd.wasmer.app)
+- **GitHub Repository:** [https://github.com/fadthousand/fadlib-cd](https://github.com/fadthousand/fadlib-cd)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Developer
 
-## Learning Laravel
+This project was developed individually in accordance with the course final project guidelines.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Name | Student ID (NPM) | Study Program |
+| :--- | :--- | :--- |
+| Abdurrahman Fadly | `[Your NPM]` | Information Systems — Universitas Singaperbangsa Karawang |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Demo Access
 
-## Agentic Development
+To protect catalog integrity and file storage in the production environment, credentials for **Admin** and **Staff (Librarian)** accounts are omitted from this public repository and will be demonstrated live during the project defense.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Visitors and evaluators can sign in at `/login` using the **Member** account below to browse the catalog, borrow books, and download EPUB files:
 
-```bash
-composer require laravel/boost --dev
+| Role | Email | Password | Access Scope |
+| :--- | :--- | :--- | :--- |
+| **Member** | `member@flcd.io` | `member123` | Browse books and series, borrow available volumes (7-day loan window), and download EPUB files from `My Shelf` |
 
-php artisan boost:install
-```
+---
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Role-Based Access Control
 
-## Contributing
+The application enforces distinct permissions across three user roles through session authentication and route middleware:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Module / Feature | Admin (`admin`) | Staff / Librarian (`staff`) | Member (`member`) |
+| :--- | :---: | :---: | :---: |
+| **Login & Logout** | Yes | Yes | Yes |
+| **Dashboard Overview** | Yes | Yes | No |
+| **User Management (`Users`)** | Full CRUD | No | No |
+| **Categories / Series (`Series`)** | Full CRUD | Read-Only | Read-Only |
+| **Book Collection (`Collection`)** | Full CRUD + EPUB Download | Full CRUD + EPUB Download | Browse + Self-Checkout |
+| **Member Management (`Members`)** | Full CRUD | Full CRUD | No |
+| **Circulation (`Circulation`)** | Record Loans & Returns | Record Loans & Returns | View Active Loans (`My Shelf`) |
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Core Modules & Features
 
-## Security Vulnerabilities
+1. **Authentication & Authorization**
+   - Session-based authentication powered by Laravel Breeze.
+   - Server-side route protection using authentication and role middleware (`admin` and `staff`) to prevent unauthorized requests.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. **Dashboard**
+   - Displays real-time library statistics: total cataloged titles, available stock copies, active borrowing count, registered members, and recent borrowing transactions.
 
-## License
+3. **User Management (Admin Only)**
+   - List system users, create new accounts, update user details, delete accounts, and assign roles (`admin`, `staff`, or `member`).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Category Management (`Series`)**
+   - Organizes books by series title, author, epigraph, and description.
+   - Admins have full create, update, and delete permissions, while Staff members have read-only access to browse series and their volumes.
+
+5. **Book Management (`Collection`)**
+   - Full CRUD operations for book volumes, including series assignment, volume code (`volume_code`), title, author, publication year, stock copies, synopsis, notes, and `.epub` file uploads.
+   - Supports filtering by series and searching by volume code or author name.
+
+6. **Member Management (`Members`)**
+   - Manages library member profiles (`member_code`, full name, email, phone, address, and `active` / `suspended` status), optional linking to `users` login accounts, and individual borrowing histories.
+
+7. **Borrowing & Circulation (`Circulation` & `My Shelf`)**
+   - **Staff-Assisted Borrowing:** Supports multi-volume loans in a single transaction, logs the processing staff member, sets an automatic 7-day due date, and decrements book stock atomically.
+   - **Member Self-Service Borrowing:** Authenticated members can borrow available volumes directly from a book's detail page and download the `.epub` file via `My Shelf` while the loan is active.
+   - **Returns:** Records the return date, updates transaction status to `returned`, and restores available book stock.
+
+---
+
+## Architecture & Database Schema
+
+### Tech Stack
+- **Backend:** PHP 8.3, Laravel Framework
+- **Frontend:** Blade Templates, Tailwind CSS, Alpine.js, Vite
+- **Database:** TiDB Cloud (MySQL-compatible over TLS)
+- **Object Storage:** Cloudflare R2 (private S3-compatible storage for `.epub` files)
+- **Hosting:** Wasmer Edge
+
+### Main Database Tables
+- `users` — Stores login credentials and user roles (`admin`, `staff`, `member`).
+- `members` — Stores library member profiles with an optional one-to-one link to `users` (`user_id`).
+- `categories` — Stores book series/categories.
+- `books` — Stores volume metadata, stock counts, and private EPUB storage paths (`category_id` foreign key).
+- `borrowings` — Stores transaction headers, transaction codes, `member_id`, `processed_by` (`users` foreign key), borrow date, due date (+7 days), return date, and status (`borrowed` / `returned`).
+- `borrowing_details` — Stores line items (`book_id` and `quantity`) belonging to each transaction in `borrowings` (`borrowing_id`).
+
+---
+
+## Local Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/fadthousand/fadlib-cd.git](https://github.com/fadthousand/fadlib-cd.git)
+   cd fadlib-cd
+   ```
+
+2. **Install PHP and frontend dependencies**
+   ```bash
+   composer install
+   npm install
+   npm run build
+   ```
+
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Set up database credentials in `.env`, then run migrations and seeders**
+   ```bash
+   php artisan migrate --seed
+   ```
+
+5. **Start the local development server**
+   ```bash
+   php artisan serve
+   ```
+   Open `http://127.0.0.1:8000` in your browser.
