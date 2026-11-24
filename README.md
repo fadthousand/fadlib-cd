@@ -22,9 +22,15 @@ This project was developed individually in accordance with the course final proj
 
 ## Demo Access
 
-To protect catalog integrity and private EPUB storage on the live server, production credentials for **Admin**, **Staff (Librarian)**, and **Member** accounts are omitted from this public repository and are provided privately to the course evaluator in the final report.
+To protect catalog integrity and private EPUB storage on the live server (`https://fadlib-cd.wasmer.app`), production credentials for **Admin**, **Staff (Librarian)**, and **Member** accounts are omitted from this public repository and are provided privately to the course evaluator in the final report.
 
-To test all roles locally, run `php artisan migrate --seed` after setting up your local environment, then sign in with the local seeder accounts configured in `database/seeders/DatabaseSeeder.php`.
+For **local evaluation** after running `php artisan migrate --seed`, you can sign in at `/login` using the default local seeder accounts below (these credentials are disabled in production):
+
+| Role | Email | Password | Access Scope |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@flcd.io` | `admin123` | Full access to Users, Series, Collection, Members, and Circulation |
+| **Staff (Librarian)** | `staff@flcd.io` | `staff123` | Read-only Series; full access to Collection, Members, and Circulation |
+| **Member** | `member@flcd.io` | `member123` | Browse catalog, self-borrow available volumes (7-day loan window), and download EPUBs via `My Shelf` |
 
 ---
 
@@ -94,6 +100,14 @@ The application enforces distinct permissions across three user roles through se
 ---
 
 ## Local Setup
+
+### System Requirements
+- **PHP** >= 8.3 (with `pdo_mysql` or `pdo_sqlite`, `mbstring`, `xml`, and `zip` extensions enabled)
+- **Composer** >= 2.x
+- **Node.js & NPM** (for compiling Tailwind CSS and Alpine.js assets via Vite)
+- **Database:** MariaDB / MySQL or SQLite
+
+### Installation Steps
 
 1. **Clone the repository**
    ```bash
